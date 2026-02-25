@@ -1,102 +1,102 @@
 # Software Engineer Skill
 
-A [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) skill that acts as your **personal software architect** — it plans new projects from scratch and documents existing codebases, covering the full cycle from idea to implementation-ready scaffold.
+Un skill de [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) que actua como tu **arquitecto de software personal** — planifica proyectos nuevos desde cero y documenta codebases existentes, cubriendo el ciclo completo desde la idea hasta el scaffold listo para implementar.
 
-## The Problem
+## El Problema
 
-Developers skip planning because it feels slow. We jump straight into coding, and pay the price later: missed edge cases, no documentation, poor architecture decisions. When a project already exists without docs, reconstructing them is equally painful.
+Los desarrolladores nos saltamos la planificacion porque se siente lenta. Vamos directo al codigo, y despues pagamos el precio: casos edge no contemplados, cero documentacion, decisiones de arquitectura pobres. Cuando un proyecto ya existe sin documentacion, reconstruirla es igual de doloroso.
 
-## The Solution
+## La Solucion
 
-This skill makes planning as fast and natural as coding. It operates in two modes:
+Este skill hace que planificar sea tan rapido y natural como codear. Opera en dos modos:
 
-### Prospective Mode (new project)
+### Modo Prospectivo (proyecto nuevo)
 ```
-Idea → Guided questions → Engineering documentation → Implementation plan → Scaffold
-```
-
-### Retrospective Mode (existing project)
-```
-Existing code → Automated analysis → Generated documentation → Gaps identified → Improvement plan
+Idea → Preguntas guiadas → Documentacion de ingenieria → Plan de implementacion → Scaffold
 ```
 
-## What It Generates
+### Modo Retrospectivo (proyecto existente)
+```
+Codigo existente → Analisis automatico → Documentacion generada → Gaps identificados → Plan de mejora
+```
 
-Up to 13 selectable engineering documentation sections:
+## Que Genera
 
-| # | Section | Description |
+Hasta 13 secciones seleccionables de documentacion de ingenieria:
+
+| # | Seccion | Descripcion |
 |---|---------|-------------|
-| 01 | System Architecture (C4) | Context and container diagrams |
-| 02 | Use Cases | Detailed flows with happy/alt/exception paths |
-| 03 | Domain Model | Conceptual class diagram |
-| 04 | ER Diagram | Physical database model |
-| 05 | API Catalog | Full endpoint contracts |
-| 06 | State Diagrams | Entity lifecycle documentation |
-| 07 | Requirements | Functional and non-functional |
-| 08 | Traceability Matrix | Requirements vs use cases cross-reference |
-| 09 | Sequence Diagrams | Component interaction per use case |
-| 10 | Activity Diagrams | Process flows with decisions |
-| 11 | Error Map | Error handling documentation |
-| 12 | Risk Matrix | Technical risk assessment |
-| 13 | Technical Decisions (ADR) | Architecture Decision Records |
+| 01 | Arquitectura del Sistema (C4) | Diagramas de contexto y contenedores |
+| 02 | Casos de Uso | Flujos detallados con happy path, alternativos y excepciones |
+| 03 | Modelo de Dominio | Diagrama de clases conceptual |
+| 04 | Diagrama ER | Modelo fisico de base de datos |
+| 05 | Catalogo de API | Contratos completos de endpoints |
+| 06 | Diagramas de Estado | Ciclo de vida de entidades |
+| 07 | Requerimientos | Funcionales y no funcionales |
+| 08 | Matriz de Trazabilidad | Cruce requerimientos vs casos de uso |
+| 09 | Diagramas de Secuencia | Interaccion entre componentes por caso de uso |
+| 10 | Diagramas de Actividad | Flujos de proceso con decisiones |
+| 11 | Mapa de Errores | Documentacion de manejo de errores |
+| 12 | Matriz de Riesgos | Evaluacion de riesgos tecnicos |
+| 13 | Decisiones Tecnicas (ADR) | Registro de decisiones de arquitectura |
 
-All diagrams are generated in **Mermaid** format.
+Todos los diagramas se generan en formato **Mermaid**.
 
-## After Documentation
+## Despues de la Documentacion
 
-The skill offers an **implementation bridge**:
-- Generate a phased implementation plan
-- Create project scaffold (directory structure + stubs)
-- Generate test contracts from documentation
-- Or all of the above
+El skill ofrece un **puente a implementacion**:
+- Generar plan de implementacion por fases
+- Crear scaffold del proyecto (estructura de directorios + stubs)
+- Generar contratos de tests desde la documentacion
+- O todo lo anterior
 
-## Installation
+## Instalacion
 
-Copy the `software-architect/` directory into your Claude Code skills folder:
+Copia el directorio `software-architect/` en tu carpeta de skills de Claude Code:
 
 ```bash
-# Clone the repo
+# Clonar el repo
 git clone https://github.com/aburriyo/software-engineer-skill.git
 
-# Copy to your Claude Code skills directory
+# Copiar al directorio de skills de Claude Code
 cp -r software-engineer-skill/software-architect ~/.claude/skills/
 ```
 
-## Usage
+## Uso
 
-The skill activates automatically when you say things like:
-- "Plan this app"
-- "Document this project"
-- "Generate engineering documentation"
-- "I need the technical docs for this codebase"
+El skill se activa automaticamente cuando dices cosas como:
+- "Planifica esta app"
+- "Documenta este proyecto"
+- "Genera la documentacion de ingenieria"
+- "Necesito los docs tecnicos de este codebase"
 
-Or invoke it directly by referencing the skill name.
+O invocalo directamente referenciando el nombre del skill.
 
-## Key Features
+## Caracteristicas Principales
 
-- **Adaptive flow**: Asks questions if your idea is vague, generates directly if you have a detailed spec
-- **Selective generation**: Choose which sections to generate
-- **Auto-detection**: Detects if you have existing code (retrospective) or are starting fresh (prospective)
-- **Cross-references**: Documents link to each other (e.g., sequence diagrams reference use cases)
-- **Inference markers**: Clearly marks `[INFERRED]` assumptions and `[PENDING]` unknowns
-- **Configurable output**: Default `docs/engineering/`, but you can specify any path
+- **Flujo adaptativo**: Hace preguntas si tu idea es vaga, genera directo si tienes una spec detallada
+- **Generacion selectiva**: Elige que secciones generar
+- **Auto-deteccion**: Detecta si tienes codigo existente (retrospectivo) o empiezas de cero (prospectivo)
+- **Referencias cruzadas**: Los documentos se enlazan entre si (ej: diagramas de secuencia referencian casos de uso)
+- **Marcadores de inferencia**: Marca claramente supuestos `[INFERIDO]` y pendientes `[PENDIENTE]`
+- **Output configurable**: Por defecto `docs/engineering/`, pero puedes especificar cualquier ruta
 
-## Structure
+## Estructura
 
 ```
 software-architect/
-  SKILL.md                          # Main orchestrator (lightweight)
+  SKILL.md                          # Orquestador principal (ligero)
   reference/
-    prospective-flow.md             # New project planning flow
-    retrospective-flow.md           # Existing project documentation flow
-    sections-catalog.md             # Templates for all 13 sections
-    implementation-bridge.md        # Plan + scaffold + tests generation
+    prospective-flow.md             # Flujo de planificacion de proyectos nuevos
+    retrospective-flow.md           # Flujo de documentacion de proyectos existentes
+    sections-catalog.md             # Templates de las 13 secciones
+    implementation-bridge.md        # Generacion de plan + scaffold + tests
 ```
 
-## Author
+## Autor
 
-Created by **Bastian** ([@aburriyo](https://github.com/aburriyo))
+Creado por **Bastian** ([@aburriyo](https://github.com/aburriyo))
 
-## License
+## Licencia
 
-MIT License - see [LICENSE](LICENSE) for details.
+Licencia MIT - ver [LICENSE](LICENSE) para mas detalles.
